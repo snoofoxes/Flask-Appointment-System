@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='service.css') }}">
+</head>
+<body>
+    <div id="navbar">
+        {% include 'navbar.html' %}
+    </div>
+    <h1>Create Service</h1>
+
+    <form method="POST">
+        <label for="service_name">Service Name:</label>
+        <input type="text" name="service_name" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea><br><br>
+
+        <label for="duration">Duration (in minutes):</label>
+        <input type="number" name="duration" required><br><br>
+
+        <div class="col-12 text-center">
+                <button type="submit" class="btn">Schedule</button>
+    </form>
+</body>
+</html>
+{% extends 'base.html' %}

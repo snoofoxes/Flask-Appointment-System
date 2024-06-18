@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dentist_dashboard.css') }}">
+</head>
+<body>
+    <div id="navbar">
+        {% include 'navbar.html' %}
+    </div>
+
+    <div class="dashboard-container">
+    <h1>Welcome, Dr. {{ user.first_name }}!</h1>
+
+    <div class="appointments-container">
+        <h2>Pending Appointments</h2>
+        {% for appointment in pending_appointments %}
+            <div class="appointment-item">
+                <p>Appointment ID: {{ appointment.id }}</p>
+                <p>Patient: {{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</p>
+                <p>Service: {{ appointment.service.service_name }}</p>
+                <p>Start Time: {{ appointment.start_time }}</p>
+                <form method="post" action="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}">
+                    <input type="submit" value="Cancel Appointment">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
+{% extends 'base.html' %}

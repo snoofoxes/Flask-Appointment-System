@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div id="navbar">
+        {% include 'navbar.html' %}
+    </div>
+    <div class="dashboard-section">
+        <h2>Your Appointments</h2>
+        {% if user.patients and user.patients|length > 0 %}
+            <ul class="appointment-list">
+                {% for patient in user.patients %}
+                    {% if patient.appointments %}
+                        {% for appointment in patient.appointments %}
+                            {% if appointment.status != 'Cancelled' %}
+                                <li class="appointment-item">
+                                    <strong>Date:</strong> {{ appointment.start_time.strftime('%Y-%m-%d') }}<br>
+                                    <strong>Time:</strong> {{ appointment.start_time.strftime('%H:%M') }} - {{ appointment.end_time.strftime('%H:%M') }}<br>
+                                    <strong>Dentist:</strong> {{ appointment.dentist.first_name }} {{ appointment.dentist.last_name }}<br>
+                                    <strong>Service:</strong> {{ appointment.service.service_name }}<br>
+                                    <strong>Status:</strong> {{ appointment.status }}<br>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No appointments found for this patient.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% extends 'base.html' %}

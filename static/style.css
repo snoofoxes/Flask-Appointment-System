@@ -1,0 +1,35 @@
+/* static/style.css */
+#home {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+#navbar {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #337ab7;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #23527c;
+}

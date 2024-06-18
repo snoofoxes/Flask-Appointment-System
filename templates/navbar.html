@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='nav.css') }}">
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+        {% if 'user_id' in session %}
+            {% if 'role' in session and session['role'] == 'Dentist' %}
+                <a class="navbar-brand" href="{{ url_for('dentist_dashboard') }}">Dental Appointment</a>
+            {% else %}
+                <a class="navbar-brand" href="{{ url_for('patient_dashboard') }}">Dental Appointment</a>
+            {% endif %}
+        {% else %}
+            <a class="navbar-brand" href="{{ url_for('patient_dashboard') }}">Dental Appointment</a>
+        {% endif %}
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">About</a>
+                </li>
+                {% if 'user_id' in session %}
+                    {% if 'role' in session and session['role'] == 'Dentist' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('view_appointments') }}">View Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('create_service') }}">Create Service</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('schedule_appointment') }}">Schedule an Appointment</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            {% if 'user_id' in session %}
+                <div class="dropdown">
+                    <img src="{{ url_for('static', filename='profile.png') }}" class="rounded-circle dropdown-toggle" style="width: 40px; height: 40px; cursor: pointer;" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('edit_user_route', user_id=session.get('user_id', 0)) }}">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-outline-light">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

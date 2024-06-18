@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='service.css') }}">
+</head>
+<body>
+     <div id="navbar">
+        {% include 'navbar.html' %}
+    </div>
+    <h1>Edit User</h1>
+    <form method="post" action="{{ url_for('edit_user_route', user_id=user.id) }}">
+        <label for="username">Username:</label>
+        <input type="text" name="username" value="{{ user.username }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ user.email }}" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Leave blank to keep the current password">
+
+        <div class="col-12 text-center">
+                <button type="submit" class="btn">Save Changes</button>
+    </form>
+</body>
+</html>
+{% extends 'base.html' %}

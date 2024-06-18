@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Appointment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
+</head>
+<body>
+    <div id="navbar">
+        {% include 'navbar.html' %}
+    </div>
+    <h1>View Appointments</h1>
+    
+    <table>
+        <tr>
+            <th>Patient</th>
+            <th>Dentist</th>
+            <th>Service</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</td>
+            <td>{{ appointment.dentist.first_name }} {{ appointment.dentist.last_name }}</td>
+            <td>{{ appointment.service.service_name }}</td>
+            <td>{{ appointment.start_time }}</td>
+            <td>{{ appointment.end_time }}</td>
+            <td>{{ appointment.status }}</td>
+            <td>
+                {% if appointment.status != 'Cancelled' %}
+                    <form method="POST" action="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}">
+                        <input type="submit" value="Cancel">
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+{% extends 'base.html' %}

@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Set your desired background color */
+}
+
+.dashboard-section {
+    background-color: #ffffff; /* Set background color for each dashboard section */
+    border: 1px solid #ced4da; /* Add border */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    padding: 20px;
+    margin: 10px 0; /* Smaller margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box-shadow for a subtle lift */
+}
+
+h2 {
+    color: #007bff; /* Set heading color */
+}
+
+.appointment-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.appointment-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #d6d8db;
+    border-radius: 4px;
+    background-color: #f3f4f5;
+}
+
+.schedule-appointment-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #28a745; /* Green background color */
+    color: #ffffff; /* White text color */
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+.schedule-appointment-link:hover {
+    background-color: #218838; /* Darker green on hover */
+}
